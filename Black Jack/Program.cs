@@ -6,7 +6,10 @@ namespace Black_Jack
     {
         static void Main(string[] args)
         {
-            new Game();
+            new Game(); 
+
+
+            //TEST // william
         }
     }
 }
