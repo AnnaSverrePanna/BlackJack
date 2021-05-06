@@ -6,7 +6,6 @@ namespace Black_Jack
     {
         static void Main(string[] args)
         {
-            //Ser ni detta nu om ni pullar denna commiten
             new Game();
         }
     }
