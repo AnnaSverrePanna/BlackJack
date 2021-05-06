@@ -53,7 +53,10 @@ namespace Black_Jack
         {
             while (loggedIn == false)
             {
+
                 Console.Clear();
+                Console.SetCursorPosition(Console.WindowWidth / 2,
+                Console.WindowHeight / 3);
                 Console.WriteLine("Welcome to Blackjack!");
                 Console.WriteLine("Do you want to:");
                 Console.WriteLine(" 1. Login");
