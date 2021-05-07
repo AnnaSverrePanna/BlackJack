@@ -56,6 +56,7 @@ namespace Black_Jack
                 {
                     keepPlaying = false;
                 }
+
                 Reset();
             }
         }
@@ -211,8 +212,6 @@ namespace Black_Jack
                 _deck = new Deck(nrOfDecks);
 
                 WaitForEnter();
-
-                TheGame();
             }
             else
             {
@@ -262,8 +261,6 @@ namespace Black_Jack
                     PlayerWin();
                 }
             }
-
-            Reset();
         }
 
         public int ChooseNrOfDecks()
