@@ -109,8 +109,8 @@ namespace Black_Jack
 
             var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
             var newMoneyValue = Builders<BsonDocument>.Update.Set("Money", money);
-            var newPlayerPointsValue = Builders<BsonDocument>.Update.Set("PlayerPoints", money);
-            var newDealerPointsValue = Builders<BsonDocument>.Update.Set("DealerPoints", money);
+            var newPlayerPointsValue = Builders<BsonDocument>.Update.Set("PlayerPoints", playerPoints);
+            var newDealerPointsValue = Builders<BsonDocument>.Update.Set("DealerPoints", dealerPoints);
 
             usersCol.UpdateOne(filter, newMoneyValue);
             usersCol.UpdateOne(filter, newPlayerPointsValue);
