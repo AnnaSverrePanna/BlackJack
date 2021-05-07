@@ -62,9 +62,9 @@ namespace Black_Jack
 
         private void AccountSystem()
         {
+            Console.BackgroundColor = ConsoleColor.Black;
             while (loggedIn == false)
             {
-
                 Console.Clear();
                 Console.SetCursorPosition(Console.WindowWidth / 2,
                 Console.WindowHeight / 3);
@@ -75,12 +75,24 @@ namespace Black_Jack
                 switch (Console.ReadKey().Key)
                 {
                     case ConsoleKey.D1:
+                        
                         Console.Clear();
-                        Console.WriteLine("Login");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(@"  _    ___   ___ ___ _  _ ");
+                        Console.WriteLine(@" | |  / _ \ / __|_ _| \| |");
+                        Console.WriteLine(@" | |_| (_) | (_ || || .` |");
+                        Console.WriteLine(@" |____\___/ \___|___|_|\_|");
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Username: ");
+                        Console.ForegroundColor = ConsoleColor.White;
                         string loginUsername = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write("Password: ");
+                        Console.ForegroundColor = ConsoleColor.Black;
                         string loginPassword = Console.ReadLine();
+                        Console.ResetColor();
+
 
                         switch (SaveSystem.Login(loginUsername, loginPassword))
                         {
@@ -92,7 +104,9 @@ namespace Black_Jack
                                 _player.Points = SaveSystem.loggedInUser.PlayerPoints;
                                 _dealer.Points = SaveSystem.loggedInUser.DealerPoints;
 
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("Logged in successfully!");
+                                Console.ResetColor();
                                 Thread.Sleep(750);
                                 loggedIn = true;
                                 break;
@@ -103,39 +117,77 @@ namespace Black_Jack
                         break;
                     case ConsoleKey.D2:
                         Console.Clear();
-                        Console.WriteLine("Create account");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(@"   ___ ___ ___   _ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
+                        Console.WriteLine(@"  / __| _ \ __| /_\_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
+                        Console.WriteLine(@" | (__|   / _| / _ \| | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
+                        Console.WriteLine(@"  \___|_|_\___/_/ \_\_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Username: ");
+                        Console.ForegroundColor = ConsoleColor.White;
                         string createAccountUsername = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write("Password: ");
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        string createAccountPasswordFirst = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write("Confirm Password: ");
+                        Console.ForegroundColor = ConsoleColor.Black;
                         string createAccountPassword = Console.ReadLine();
+                        Console.ResetColor();
+
+                        if(createAccountPasswordFirst != createAccountPassword)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("Passwords doesn't match. Try again!");
+                            Console.ResetColor();
+                            Console.ReadLine();
+                            break;
+                        }
 
                         switch (SaveSystem.CreateUser(createAccountUsername, createAccountPassword))
                         {
                             case true:
                                 Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("Account created!");
+                                Console.ResetColor();
                                 Thread.Sleep(750);
                                 break;
                             case false:
                                 Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("Username is already taken!");
+                                Console.ResetColor();
                                 Thread.Sleep(750);
                                 break;
                         }
                         break;
                     case ConsoleKey.D3:
                         Console.Clear();
-                        Console.WriteLine("Delete account");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine(@"  ___  ___ _    ___ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
+                        Console.WriteLine(@" |   \| __| |  | __|_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
+                        Console.WriteLine(@" | |) | _|| |__| _|  | | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
+                        Console.WriteLine(@" |___/|___|____|___| |_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         Console.Write("Username: ");
+                        Console.ForegroundColor = ConsoleColor.White;
                         string deleteAccountUsername = Console.ReadLine();
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.Write("Password: ");
+                        Console.ForegroundColor = ConsoleColor.Black;
                         string deleteAccountPassword = Console.ReadLine();
+                        Console.ResetColor();
 
                         switch (SaveSystem.DeleteUser(deleteAccountUsername, deleteAccountPassword))
                         {
                             case true:
                                 Console.Clear();
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("Account deleted successfully!");
+                                Console.ResetColor();
                                 Thread.Sleep(750);
                                 break;
                             case false:
@@ -272,8 +324,26 @@ namespace Black_Jack
             Console.WriteLine("The minimum is 5 so you can't have a number less than 5.");
             Console.WriteLine();
 
-            //Finns bugg här som kaan märkte
-            var nrOfDecks = Convert.ToInt32(Console.ReadLine());
+            bool validInput = false;
+            var nrOfDecks = 5; // default
+            while (validInput == false)
+            {
+                try
+                {
+                    nrOfDecks = Convert.ToInt32(Console.ReadLine());
+                    validInput = true;
+                }
+                catch (Exception)
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("ERROR: Only numbers allowed!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Write the number of decks you want.");
+                    Console.WriteLine("The minimum is 5 so you can't have a number less than 5.");
+                    Console.WriteLine();
+                }
+            }
 
             if (nrOfDecks >= 5)
             {
@@ -527,10 +597,28 @@ namespace Black_Jack
         {
             Console.WriteLine($"How much do you want to bet of your ${_player.MoneyPot}");
             bool WaitingForBet = true;
+            bool validInput = false;
 
             while (WaitingForBet)
             {
-                _player.Bet = Int32.Parse(Console.ReadLine());
+                _player.Bet = 0;
+                while(validInput == false)
+                {
+                    try
+                    {
+                        _player.Bet = Int32.Parse(Console.ReadLine());
+                        validInput = true;
+                    }
+                    catch (Exception)
+                    {
+                        Console.Clear();
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("ERROR: Only numbers allowed!");
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine($"How much do you want to bet of your ${_player.MoneyPot}");
+                    }
+                }        
 
                 if (_player.Bet <= _player.MoneyPot && _player.Bet > 0)
                 {

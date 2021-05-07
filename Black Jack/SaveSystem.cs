@@ -39,7 +39,6 @@ namespace Black_Jack
             user.Username = username;
             user.Password = Base64Encode(Base64Encode(password));
             user.Money = 300;
-            if (user.Username == "Josef") user.Money = 1337;
 
             string jsonData = JsonSerializer.Serialize(user);
             usersCol.InsertOne(BsonDocument.Parse(jsonData)); //database
@@ -66,13 +65,17 @@ namespace Black_Jack
                 else if (existingUser.Username == username && Base64Decode(Base64Decode(existingUser.Password)) != password)
                 {
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Wrong password!");
+                    Console.ResetColor();
                     return false;
                 }
             }
 
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Account not found!");
+            Console.ResetColor();
             return false;
         }
 
@@ -90,13 +93,17 @@ namespace Black_Jack
                 else if (user.Username == username && Base64Decode(Base64Decode(user.Password)) != password)
                 {
                     Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Wrong password!");
+                    Console.ResetColor();
                     return false;
                 }
             }
 
             Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Account not found!");
+            Console.ResetColor();
             return false;
         }
 
