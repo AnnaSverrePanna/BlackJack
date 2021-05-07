@@ -5,7 +5,7 @@ using System.Threading;
 
 namespace Black_Jack
 {
-    //Anna(BlackJack) och William(Save/Login system)
+    //Anna(BlackJack) och William(Save/Login system) och Josef (Text formating) 
     public enum SuitType
     {
         Club,
@@ -57,11 +57,9 @@ namespace Black_Jack
                 Console.Clear();
                 Console.SetCursorPosition(Console.WindowWidth / 2,
                 Console.WindowHeight / 3);
-                Console.WriteLine("Welcome to Blackjack!");
-                Console.WriteLine("Do you want to:");
-                Console.WriteLine(" 1. Login");
-                Console.WriteLine(" 2. Create Account");
-                Console.WriteLine(" 3. Delete Account");
+                string[] intro = { "Welcome to Blackjack!", "Do you want to:", " 1. Login", " 2. Create Account", " 3. Delete Account" };
+
+                Testing_stuff.PrintTextNice(intro);
 
                 switch (Console.ReadKey().Key)
                 {
