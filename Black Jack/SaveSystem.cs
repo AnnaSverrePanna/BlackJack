@@ -7,18 +7,25 @@ using System.Text.Json.Serialization;
 using System.IO;
 using System.Threading.Tasks;
 
+using MongoDB.Driver;
+using MongoDB.Bson;
+
 namespace Black_Jack
 {
     class SaveSystem
     {
-        static List<SaveUser> users = new List<SaveUser>();
-        static string saveFolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "BlackJack");
+        static MongoClient dbClient = new MongoClient("mongodb+srv://blackjack:xPVwcNPS1I4sm90I@cluster0.2eecw.mongodb.net");
+        static string dbName = "blackjack-database";
 
+        static List<SaveUser> users = new List<SaveUser>();
         public static SaveUser loggedInUser = new SaveUser();
 
         public static bool CreateUser(string username, string password)
         {
             LoadSave();
+
+            var blackjackDB = dbClient.GetDatabase(dbName);
+            var usersCol = blackjackDB.GetCollection<BsonDocument>("users");
 
             foreach (var existingUser in users)
             {
@@ -35,7 +42,7 @@ namespace Black_Jack
             if (user.Username == "Josef") user.Money = 1337;
 
             string jsonData = JsonSerializer.Serialize(user);
-            File.AppendAllText(Path.Combine(saveFolderPath, "save.json"), jsonData + Environment.NewLine);
+            usersCol.InsertOne(BsonDocument.Parse(jsonData)); //database
             return true;
         }
 
@@ -43,19 +50,17 @@ namespace Black_Jack
         {
             LoadSave();
 
+            var blackjackDB = dbClient.GetDatabase(dbName);
+            var usersCol = blackjackDB.GetCollection<BsonDocument>("users");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
+
             foreach (var existingUser in users)
             {
                 if (existingUser.Username == username && Base64Decode(Base64Decode(existingUser.Password)) == password)
                 {
                     users.Remove(existingUser);
-
-                    List<string> newUserList = new List<string>();
-                    foreach (var user in users)
-                    {
-                        newUserList.Add(JsonSerializer.Serialize(user));
-                    }
-
-                    File.WriteAllLines(Path.Combine(saveFolderPath, "save.json"), newUserList);
+                    usersCol.DeleteOne(filter);
                     return true;
                 }
                 else if (existingUser.Username == username && Base64Decode(Base64Decode(existingUser.Password)) != password)
@@ -99,37 +104,32 @@ namespace Black_Jack
         {
             LoadSave();
 
-            string[] lines = File.ReadAllLines(Path.Combine(saveFolderPath, "save.json"));
+            var blackjackDB = dbClient.GetDatabase(dbName);
+            var usersCol = blackjackDB.GetCollection<BsonDocument>("users");
 
-            int count = 0;
-            foreach (var line in lines)
-            {
-                SaveUser tmpUser = JsonSerializer.Deserialize<SaveUser>(line);
-                if (tmpUser.Username == username)
-                {
-                    tmpUser.Money = money;
-                    tmpUser.PlayerPoints = playerPoints;
-                    tmpUser.DealerPoints = dealerPoints;
+            var filter = Builders<BsonDocument>.Filter.Eq("Username", username);
+            var newMoneyValue = Builders<BsonDocument>.Update.Set("Money", money);
+            var newPlayerPointsValue = Builders<BsonDocument>.Update.Set("PlayerPoints", money);
+            var newDealerPointsValue = Builders<BsonDocument>.Update.Set("DealerPoints", money);
 
-                    lines[count] = JsonSerializer.Serialize(tmpUser);
-                }
-                count++;
-            }
-
-            File.WriteAllLines(Path.Combine(saveFolderPath, "save.json"), lines);
+            usersCol.UpdateOne(filter, newMoneyValue);
+            usersCol.UpdateOne(filter, newPlayerPointsValue);
+            usersCol.UpdateOne(filter, newDealerPointsValue);
         }
 
         public static void LoadSave()
         {
+            var blackjackDB = dbClient.GetDatabase(dbName);
+            var usersCol = blackjackDB.GetCollection<BsonDocument>("users");
+
             users.Clear();
-            if (!Directory.Exists(saveFolderPath)) Directory.CreateDirectory(saveFolderPath);
-            if (!File.Exists(Path.Combine(saveFolderPath, "save.json"))) File.AppendAllText(Path.Combine(saveFolderPath, "save.json"), "");
 
-            string[] lines = File.ReadAllLines(Path.Combine(saveFolderPath, "save.json"));
-
-            foreach (var line in lines)
+            var existingUsers = usersCol.Find(new BsonDocument()).ToList();
+            foreach (var user in existingUsers)
             {
-                users.Add(JsonSerializer.Deserialize<SaveUser>(line));
+                string userData = user.ToJson().Remove(0, user.ToJson().IndexOf(',') + 1);
+                userData = userData.Insert(0, "{");
+                users.Add(JsonSerializer.Deserialize<SaveUser>(userData));
             }
         }
 
