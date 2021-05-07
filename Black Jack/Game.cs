@@ -272,6 +272,7 @@ namespace Black_Jack
             Console.WriteLine("The minimum is 5 so you can't have a number less than 5.");
             Console.WriteLine();
 
+            //Finns bugg här som kaan märkte
             var nrOfDecks = Convert.ToInt32(Console.ReadLine());
 
             if (nrOfDecks >= 5)
