@@ -20,6 +20,7 @@ namespace Black_Jack
         Lost,
         Playing,
         Tie,
+        End,
         BlackJack
     }
 
@@ -36,8 +37,18 @@ namespace Black_Jack
         {
             BeforeStart();
 
-            bool keepPlaying = true;
-            while (keepPlaying)
+            bool keepPlaying;
+
+            if (_player.MoneyPot < 0)
+            {
+                keepPlaying = true;
+            }
+            else
+            {
+                keepPlaying = false;
+            }
+
+            while (keepPlaying == true)
             {
                 TheGame();
 
@@ -193,11 +204,28 @@ namespace Black_Jack
             SaveSystem.LoadSave();
             AccountSystem();
 
-            Console.WriteLine();
-            var nrOfDecks = ChooseNrOfDecks();
-            _deck = new Deck(nrOfDecks);
+            if (_player.MoneyPot < 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("Your turn");
+                Console.ForegroundColor = ConsoleColor.White;
+                PlayerFirstDraws();
 
-            WaitForEnter();
+                Console.WriteLine();
+                var nrOfDecks = ChooseNrOfDecks();
+                _deck = new Deck(nrOfDecks);
+
+                WaitForEnter();
+            }
+            else
+            {
+                Console.WriteLine();
+                Console.WriteLine("You have no money left so you cant keep playing");
+                Console.WriteLine($"You won {_player.Points} times and you lost {_dealer.Points} times");
+                Console.WriteLine("Press any key to exit");
+                _status = GameStatus.End;
+                Console.ReadKey();
+            }
         }
 
         private void TheGame()
@@ -209,11 +237,6 @@ namespace Black_Jack
             WriteOutPointsAndMoney();
 
             Betting();
-
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Your turn");
-            Console.ForegroundColor = ConsoleColor.White;
-            PlayerFirstDraws();
 
             while (_status == GameStatus.Playing)
             {
