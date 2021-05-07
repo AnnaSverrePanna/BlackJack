@@ -39,7 +39,7 @@ namespace Black_Jack
 
             bool keepPlaying;
 
-            if (_player.MoneyPot < 0)
+            if (_player.MoneyPot > 0)
             {
                 keepPlaying = true;
             }
@@ -206,18 +206,15 @@ namespace Black_Jack
             SaveSystem.LoadSave();
             AccountSystem();
 
-            if (_player.MoneyPot < 0)
+            if (_player.MoneyPot > 0)
             {
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("Your turn");
-                Console.ForegroundColor = ConsoleColor.White;
-                PlayerFirstDraws();
-
                 Console.WriteLine();
                 var nrOfDecks = ChooseNrOfDecks();
                 _deck = new Deck(nrOfDecks);
 
                 WaitForEnter();
+
+                TheGame();
             }
             else
             {
@@ -239,6 +236,11 @@ namespace Black_Jack
             WriteOutPointsAndMoney();
 
             Betting();
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Your turn");
+            Console.ForegroundColor = ConsoleColor.White;
+            PlayerFirstDraws();
 
             while (_status == GameStatus.Playing)
             {
