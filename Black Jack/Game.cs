@@ -129,6 +129,7 @@ namespace Black_Jack
                         break;
                     case false:
                         Thread.Sleep(750);
+                        new Menu();
                         break;
                 }
             }
