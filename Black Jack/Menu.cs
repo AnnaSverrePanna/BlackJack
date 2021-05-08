@@ -8,7 +8,7 @@ namespace Black_Jack
 {
     class Menu
     {
-        int menuPos = 0;
+        int menuPos = 1;
         bool selectedOption = false;
         public Menu()
         {
@@ -140,19 +140,33 @@ namespace Black_Jack
                                 Console.BackgroundColor = ConsoleColor.Black;
                                 Console.ForegroundColor = ConsoleColor.White;
                                 Console.Clear();
-
-                                Console.WriteLine("Black Jack is a cardgame where you are playing against a dealer. The");
-                                Console.WriteLine("goal is to get as near 21 as possible (or over the dealer). The value");
-                                Console.WriteLine("of each numbered card is the value of the number. An ace can for the");
-                                Console.WriteLine("player both have the value 1 and 11. A king, queen and jack does all");
-                                Console.WriteLine("have the value 10. For the dealer every card except ace is worth the");
-                                Console.WriteLine("same. For the dealer, the ace is worth 11.");
                                 Console.WriteLine();
-                                Console.WriteLine("When you create an account you start with $300. You start every round");
-                                Console.WriteLine("with betting. If you lose against the dealer, you lose what you have bet.");
-                                Console.WriteLine("If you get BlackJack (value 21) you get back three times of what you bet");
-                                Console.WriteLine("in the beginning. If you win over the dealer (have a higher value than");
-                                Console.WriteLine("the dealer) you get back dubble the amount you bet.");
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                ConsoleText.CenterText(@"  _____  _    _ _      ______  _____ ");
+                                ConsoleText.CenterText(@" |  __ \| |  | | |    |  ____|/ ____|");
+                                ConsoleText.CenterText(@" | |__) | |  | | |    | |__  | (___  ");
+                                ConsoleText.CenterText(@" |  _  /| |  | | |    |  __|  \___ \ ");
+                                ConsoleText.CenterText(@" | | \ \| |__| | |____| |____ ____) |");
+                                ConsoleText.CenterText(@" |_|  \_\\____/|______|______|_____/ ");
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                Console.WriteLine();
+
+                                ConsoleText.CenterText("Black Jack is a cardgame where you are playing against a dealer. The");
+                                ConsoleText.CenterText("goal is to get as near 21 as possible (or over the dealer). The value");
+                                ConsoleText.CenterText("of each numbered card is the value of the number. An ace can for the");
+                                ConsoleText.CenterText("player both have the value 1 and 11. A king, queen and jack does all");
+                                ConsoleText.CenterText("have the value 10. For the dealer every card except ace is worth the");
+                                ConsoleText.CenterText("same. For the dealer, the ace is worth 11.");
+                                Console.WriteLine();
+                                ConsoleText.CenterText("When you create an account you start with $300. You start every round");
+                                ConsoleText.CenterText("with betting. If you lose against the dealer, you lose what you have bet.");
+                                ConsoleText.CenterText("If you get BlackJack (value 21) you get back three times of what you bet");
+                                ConsoleText.CenterText("in the beginning. If you win over the dealer (have a higher value than");
+                                ConsoleText.CenterText("the dealer) you get back dubble the amount you bet.");
+                                Console.WriteLine();
+                                ConsoleText.CenterText("Press any key to return.");
 
                                 Console.ReadKey();
                                 #endregion
@@ -329,7 +343,6 @@ namespace Black_Jack
             ConsoleText.CenterText(@" |  _ <| |      / /\ \| |    |  < _   | |/ /\ \| |    |  <   ");
             ConsoleText.CenterText(@" | |_) | |____ / ____ \ |____| . \ |__| / ____ \ |____| . \  ");
             ConsoleText.CenterText(@" |____/|______/_/    \_\_____|_|\_\____/_/    \_\_____|_|\_\ ");
-            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
