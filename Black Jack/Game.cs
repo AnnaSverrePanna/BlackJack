@@ -69,6 +69,7 @@ namespace Black_Jack
                     Console.WriteLine($"You won {_player.Points} times and you lost {_dealer.Points} times");
                     Console.WriteLine("Press any key to exit");
                     _status = GameStatus.End;
+                    keepPlaying = false;
                     Console.ReadKey();
                 }
             }
@@ -528,14 +529,15 @@ namespace Black_Jack
 
         private void Betting()
         {
-            Console.WriteLine($"How much do you want to bet of your ${_player.MoneyPot}");
             bool WaitingForBet = true;
-            bool validInput = false;
 
             while (WaitingForBet)
             {
+                Console.WriteLine($"How much do you want to bet of your ${_player.MoneyPot}");
+                bool validInput = false;
+
                 _player.Bet = 0;
-                while(validInput == false)
+                while (validInput == false)
                 {
                     try
                     {
@@ -561,13 +563,11 @@ namespace Black_Jack
                 {
                     Console.WriteLine();
                     Console.WriteLine($"You cant bet ${_player.Bet} because you only have ${_player.MoneyPot} in your pot");
-                    Console.WriteLine($"How much do you want to bet of your ${_player.MoneyPot}");
                 }
                 else if (_player.Bet <= 0)
                 {
                     Console.WriteLine();
                     Console.WriteLine($"You cant bet ${_player.Bet} because you cant bet 0 or less money");
-                    Console.WriteLine($"How much do you want to bet of your ${_player.MoneyPot}");
                 }
             }
 
