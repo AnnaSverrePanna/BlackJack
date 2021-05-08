@@ -122,7 +122,7 @@ namespace Black_Jack
 
                         Menu.LoginText();
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Logged in successfully!");
+                        ConsoleText.CenterText("Logged in successfully!");
                         Console.ResetColor();
                         Thread.Sleep(750);
                         loggedIn = true;
@@ -190,6 +190,7 @@ namespace Black_Jack
 
             SaveSystem.LoadSave();
             AccountSystem();
+            Menu.BlackjackText();
 
             if (_player.MoneyPot > 0)
             {
@@ -201,7 +202,7 @@ namespace Black_Jack
             }
             else
             {
-                Console.WriteLine();
+                Menu.BlackjackText();
                 Console.WriteLine("You have no money left so you cant keep playing");
                 Console.WriteLine($"You won {_player.Points} times and you lost {_dealer.Points} times");
                 Console.WriteLine("Press any key to exit");
@@ -266,7 +267,7 @@ namespace Black_Jack
                 }
                 catch (Exception)
                 {
-                    Console.Clear();
+                    Menu.BlackjackText();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("ERROR: Only numbers allowed!");
                     Console.ForegroundColor = ConsoleColor.White;
@@ -574,6 +575,7 @@ namespace Black_Jack
 
         private void WriteOutPointsAndMoney()
         {
+            Menu.BlackjackText();
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine($"Your points: {_player.Points}");
             Console.WriteLine($"Your Pot is ${_player.MoneyPot}");

@@ -29,7 +29,7 @@ namespace Black_Jack
 
             foreach (var existingUser in users)
             {
-                if (existingUser.Username == username)
+                if (existingUser.Username.ToLower() == username.ToLower())
                 {
                     return false;
                 }
@@ -56,13 +56,13 @@ namespace Black_Jack
 
             foreach (var existingUser in users)
             {
-                if (existingUser.Username == username && Base64Decode(Base64Decode(existingUser.Password)) == password)
+                if (existingUser.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(existingUser.Password)) == password)
                 {
                     users.Remove(existingUser);
                     usersCol.DeleteOne(filter);
                     return true;
                 }
-                else if (existingUser.Username == username && Base64Decode(Base64Decode(existingUser.Password)) != password)
+                else if (existingUser.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(existingUser.Password)) != password)
                 {
                     Menu.DeleteAccountText();
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -85,12 +85,12 @@ namespace Black_Jack
 
             foreach (var user in users)
             {
-                if (user.Username == username && Base64Decode(Base64Decode(user.Password)) == password)
+                if (user.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(user.Password)) == password)
                 {
                     loggedInUser = user;
                     return true;
                 }
-                else if (user.Username == username && Base64Decode(Base64Decode(user.Password)) != password)
+                else if (user.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(user.Password)) != password)
                 {
                     Menu.LoginText();
                     Console.ForegroundColor = ConsoleColor.Red;

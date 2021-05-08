@@ -257,7 +257,7 @@ namespace Black_Jack
             if (menuPos == 0) new Game();
         }
 
-        private void BlackjackText()
+        public static void BlackjackText()
         {
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
