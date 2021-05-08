@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 namespace Black_Jack
@@ -146,6 +147,37 @@ namespace Black_Jack
                                     Console.ForegroundColor = ConsoleColor.Red;
                                     ConsoleText.CenterText("Passwords doesn't match. Try again!");
                                     Console.ResetColor();
+                                    Thread.Sleep(750);
+                                    break;
+                                }
+
+                                if(Regex.IsMatch(createAccountUsername, @"^[a-zA-Z][a-zA-Z0-9]{2,14}$") == false)
+                                {
+                                    CreateAccountText();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    ConsoleText.CenterText("ERROR:");
+                                    ConsoleText.CenterText("Username must be 3-15 char long.");
+                                    ConsoleText.CenterText("Username must start with a letter.");
+                                    ConsoleText.CenterText("Username can't contain special chars.");
+                                    Console.WriteLine();
+                                    Console.ResetColor();
+                                    ConsoleText.CenterText("Press any key to continue.");
+                                    Console.ReadLine();
+                                    break;
+                                }
+
+                                if (Regex.IsMatch(createAccountPassword, @"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{5,}$") == false)
+                                {
+                                    CreateAccountText();
+                                    Console.ForegroundColor = ConsoleColor.Red;
+                                    ConsoleText.CenterText("ERROR:");
+                                    ConsoleText.CenterText("Password must be atleast 6 chars long.");
+                                    ConsoleText.CenterText("Password should contain atleast one upper case and one lower case.");
+                                    ConsoleText.CenterText("Password should contain atleast one digit.");
+                                    ConsoleText.CenterText("Password should contain atleast one special char (#?!@$%^&*-)");
+                                    Console.WriteLine();
+                                    Console.ResetColor();
+                                    ConsoleText.CenterText("Press any key to continue.");
                                     Console.ReadLine();
                                     break;
                                 }

@@ -5,7 +5,9 @@ using System.Threading;
 
 namespace Black_Jack
 {
-    //Anna(BlackJack) och William(Save/Login system) och Josef (Text formating) 
+    /// <summary>
+    /// Blackjack - Anna- William - Josef
+    /// </summary>
     public enum SuitType
     {
         Club,
