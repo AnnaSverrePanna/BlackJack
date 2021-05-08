@@ -66,135 +66,49 @@ namespace Black_Jack
             Console.BackgroundColor = ConsoleColor.Black;
             while (loggedIn == false)
             {
+                //Console.Clear();
+                //Console.SetCursorPosition(Console.WindowWidth / 2,
+                //Console.WindowHeight / 3);
+                //string[] intro = { "Welcome to Blackjack!", "Do you want to:", " 1. Login", " 2. Create Account", " 3. Delete Account" };
+
+                //Testing_stuff.PrintTextNice(intro);
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Clear();
-                Console.SetCursorPosition(Console.WindowWidth / 2,
-                Console.WindowHeight / 3);
-                string[] intro = { "Welcome to Blackjack!", "Do you want to:", " 1. Login", " 2. Create Account", " 3. Delete Account" };
+                Console.WriteLine(@"  _    ___   ___ ___ _  _ ");
+                Console.WriteLine(@" | |  / _ \ / __|_ _| \| |");
+                Console.WriteLine(@" | |_| (_) | (_ || || .` |");
+                Console.WriteLine(@" |____\___/ \___|___|_|\_|");
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("Username: ");
+                Console.ForegroundColor = ConsoleColor.White;
+                string loginUsername = Console.ReadLine();
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write("Password: ");
+                Console.ForegroundColor = ConsoleColor.Black;
+                string loginPassword = Console.ReadLine();
+                Console.ResetColor();
 
-                Testing_stuff.PrintTextNice(intro);
 
-                switch (Console.ReadKey().Key)
+                switch (SaveSystem.Login(loginUsername, loginPassword))
                 {
-                    case ConsoleKey.D1:
-                        
+                    case true:
                         Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine(@"  _    ___   ___ ___ _  _ ");
-                        Console.WriteLine(@" | |  / _ \ / __|_ _| \| |");
-                        Console.WriteLine(@" | |_| (_) | (_ || || .` |");
-                        Console.WriteLine(@" |____\___/ \___|___|_|\_|");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("Username: ");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        string loginUsername = Console.ReadLine();
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write("Password: ");
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        string loginPassword = Console.ReadLine();
+
+                        _player.Name = SaveSystem.loggedInUser.Username;
+                        _player.MoneyPot = SaveSystem.loggedInUser.Money;
+                        _player.Points = SaveSystem.loggedInUser.PlayerPoints;
+                        _dealer.Points = SaveSystem.loggedInUser.DealerPoints;
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Logged in successfully!");
                         Console.ResetColor();
-
-
-                        switch (SaveSystem.Login(loginUsername, loginPassword))
-                        {
-                            case true:
-                                Console.Clear();
-
-                                _player.Name = SaveSystem.loggedInUser.Username;
-                                _player.MoneyPot = SaveSystem.loggedInUser.Money;
-                                _player.Points = SaveSystem.loggedInUser.PlayerPoints;
-                                _dealer.Points = SaveSystem.loggedInUser.DealerPoints;
-
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("Logged in successfully!");
-                                Console.ResetColor();
-                                Thread.Sleep(750);
-                                loggedIn = true;
-                                break;
-                            case false:
-                                Thread.Sleep(750);
-                                break;
-                        }
+                        Thread.Sleep(750);
+                        loggedIn = true;
                         break;
-                    case ConsoleKey.D2:
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine(@"   ___ ___ ___   _ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
-                        Console.WriteLine(@"  / __| _ \ __| /_\_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
-                        Console.WriteLine(@" | (__|   / _| / _ \| | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
-                        Console.WriteLine(@"  \___|_|_\___/_/ \_\_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
-                        Console.WriteLine();
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("Username: ");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        string createAccountUsername = Console.ReadLine();
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write("Password: ");
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        string createAccountPasswordFirst = Console.ReadLine();
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write("Confirm Password: ");
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        string createAccountPassword = Console.ReadLine();
-                        Console.ResetColor();
-
-                        if(createAccountPasswordFirst != createAccountPassword)
-                        {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Passwords doesn't match. Try again!");
-                            Console.ResetColor();
-                            Console.ReadLine();
-                            break;
-                        }
-
-                        switch (SaveSystem.CreateUser(createAccountUsername, createAccountPassword))
-                        {
-                            case true:
-                                Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("Account created!");
-                                Console.ResetColor();
-                                Thread.Sleep(750);
-                                break;
-                            case false:
-                                Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine("Username is already taken!");
-                                Console.ResetColor();
-                                Thread.Sleep(750);
-                                break;
-                        }
-                        break;
-                    case ConsoleKey.D3:
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.White;
-                        Console.WriteLine(@"  ___  ___ _    ___ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
-                        Console.WriteLine(@" |   \| __| |  | __|_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
-                        Console.WriteLine(@" | |) | _|| |__| _|  | | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
-                        Console.WriteLine(@" |___/|___|____|___| |_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
-                        Console.ForegroundColor = ConsoleColor.Cyan;
-                        Console.Write("Username: ");
-                        Console.ForegroundColor = ConsoleColor.White;
-                        string deleteAccountUsername = Console.ReadLine();
-                        Console.ForegroundColor = ConsoleColor.DarkRed;
-                        Console.Write("Password: ");
-                        Console.ForegroundColor = ConsoleColor.Black;
-                        string deleteAccountPassword = Console.ReadLine();
-                        Console.ResetColor();
-
-                        switch (SaveSystem.DeleteUser(deleteAccountUsername, deleteAccountPassword))
-                        {
-                            case true:
-                                Console.Clear();
-                                Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("Account deleted successfully!");
-                                Console.ResetColor();
-                                Thread.Sleep(750);
-                                break;
-                            case false:
-                                Thread.Sleep(750);
-                                break;
-                        }
+                    case false:
+                        Thread.Sleep(750);
                         break;
                 }
             }

@@ -7,7 +7,8 @@ namespace Black_Jack
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            new Game();
+            new Menu();
+            //new Game();
         }
     }
 }
