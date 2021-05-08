@@ -40,6 +40,35 @@ namespace Black_Jack
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
                         ConsoleText.CenterText("                   ");
+                        ConsoleText.CenterText("       RULES       ");
+                        ConsoleText.CenterText("                   ");
+                        Console.WriteLine();
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        ConsoleText.CenterText("                   ");
+                        ConsoleText.CenterText("       LOGIN       ");
+                        ConsoleText.CenterText("                   ");
+                        Console.WriteLine();
+                        ConsoleText.CenterText("                   ");
+                        ConsoleText.CenterText("   CREATE ACCOUNT  ");
+                        ConsoleText.CenterText("                   ");
+                        Console.WriteLine();
+                        ConsoleText.CenterText("                   ");
+                        ConsoleText.CenterText("   DELETE ACCOUNT  ");
+                        ConsoleText.CenterText("                   ");
+                        break;
+
+                    case 1:
+                        BlackjackText();
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        ConsoleText.CenterText("                   ");
+                        ConsoleText.CenterText("       RULES       ");
+                        ConsoleText.CenterText("                   ");
+                        Console.WriteLine();
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        ConsoleText.CenterText("                   ");
                         ConsoleText.CenterText("       LOGIN       ");
                         ConsoleText.CenterText("                   ");
                         Console.WriteLine();
@@ -53,10 +82,14 @@ namespace Black_Jack
                         ConsoleText.CenterText("   DELETE ACCOUNT  ");
                         ConsoleText.CenterText("                   ");
                         break;
-                    case 1:
+                    case 2:
                         BlackjackText();
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                         Console.ForegroundColor = ConsoleColor.Black;
+                        ConsoleText.CenterText("                   ");
+                        ConsoleText.CenterText("       RULES       ");
+                        ConsoleText.CenterText("                   ");
+                        Console.WriteLine();
                         ConsoleText.CenterText("                   ");
                         ConsoleText.CenterText("       LOGIN       ");
                         ConsoleText.CenterText("                   ");
@@ -73,7 +106,7 @@ namespace Black_Jack
                         ConsoleText.CenterText("   DELETE ACCOUNT  ");
                         ConsoleText.CenterText("                   ");
                         break;
-                    case 2:
+                    case 3:
                         BlackjackText();
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                         Console.ForegroundColor = ConsoleColor.Black;
@@ -81,8 +114,10 @@ namespace Black_Jack
                         ConsoleText.CenterText("       LOGIN       ");
                         ConsoleText.CenterText("                   ");
                         Console.WriteLine();
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                        Console.ForegroundColor = ConsoleColor.Black;
+                        ConsoleText.CenterText("                   ");
+                        ConsoleText.CenterText("       RULES       ");
+                        ConsoleText.CenterText("                   ");
+                        Console.WriteLine();
                         ConsoleText.CenterText("                   ");
                         ConsoleText.CenterText("   CREATE ACCOUNT  ");
                         ConsoleText.CenterText("                   ");
@@ -101,12 +136,34 @@ namespace Black_Jack
                         switch (menuPos)
                         {
                             case 0:
-                                selectedOption = true;
+                                #region Rules
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.ForegroundColor = ConsoleColor.White;
+                                Console.Clear();
+
+                                Console.WriteLine("Black Jack is a cardgame where you are playing against a dealer. The");
+                                Console.WriteLine("goal is to get as near 21 as possible (or over the dealer). The value");
+                                Console.WriteLine("of each numbered card is the value of the number. An ace can for the");
+                                Console.WriteLine("player both have the value 1 and 11. A king, queen and jack does all");
+                                Console.WriteLine("have the value 10. For the dealer every card except ace is worth the");
+                                Console.WriteLine("same. For the dealer, the ace is worth 11.");
+                                Console.WriteLine();
+                                Console.WriteLine("When you create an account you start with $300. You start every round");
+                                Console.WriteLine("with betting. If you lose against the dealer, you lose what you have bet.");
+                                Console.WriteLine("If you get BlackJack (value 21) you get back three times of what you bet");
+                                Console.WriteLine("in the beginning. If you win over the dealer (have a higher value than");
+                                Console.WriteLine("the dealer) you get back dubble the amount you bet.");
+
+                                Console.ReadKey();
+                                #endregion
                                 break;
                             case 1:
+                                selectedOption = true;
+                                break;
+                            case 2:
                                 #region CreateAccount
                                 CreateAccountText();
-                                
+
                                 Console.BackgroundColor = ConsoleColor.White;
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 ConsoleText.CenterText("                   ");
@@ -151,7 +208,7 @@ namespace Black_Jack
                                     break;
                                 }
 
-                                if(Regex.IsMatch(createAccountUsername, @"^[a-zA-Z][a-zA-Z0-9]{2,14}$") == false)
+                                if (Regex.IsMatch(createAccountUsername, @"^[a-zA-Z][a-zA-Z0-9]{2,14}$") == false)
                                 {
                                     CreateAccountText();
                                     Console.ForegroundColor = ConsoleColor.Red;
@@ -201,7 +258,7 @@ namespace Black_Jack
                                 }
                                 #endregion
                                 break;
-                            case 2:
+                            case 3:
                                 #region DeleteAccount
                                 DeleteAccountText();
 
@@ -246,15 +303,15 @@ namespace Black_Jack
                         }
                         break;
                     case ConsoleKey.DownArrow:
-                        if (menuPos < 2) menuPos++;
+                        if (menuPos < 3) menuPos++;
                         break;
                     case ConsoleKey.UpArrow:
                         if (menuPos > 0) menuPos--;
                         break;
-                }          
+                }
             }
 
-            if (menuPos == 0) new Game();
+            if (menuPos == 1) new Game();
         }
 
         public static void BlackjackText()
