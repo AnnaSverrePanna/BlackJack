@@ -224,6 +224,7 @@ namespace Black_Jack
             Betting();
 
             Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine();
             Console.WriteLine("Your turn");
             Console.ForegroundColor = ConsoleColor.White;
             PlayerFirstDraws();

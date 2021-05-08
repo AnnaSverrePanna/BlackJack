@@ -111,11 +111,11 @@ namespace Black_Jack
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                         Console.ForegroundColor = ConsoleColor.Black;
                         ConsoleText.CenterText("                   ");
-                        ConsoleText.CenterText("       LOGIN       ");
+                        ConsoleText.CenterText("       RULES       ");
                         ConsoleText.CenterText("                   ");
                         Console.WriteLine();
                         ConsoleText.CenterText("                   ");
-                        ConsoleText.CenterText("       RULES       ");
+                        ConsoleText.CenterText("       LOGIN       ");
                         ConsoleText.CenterText("                   ");
                         Console.WriteLine();
                         ConsoleText.CenterText("                   ");
