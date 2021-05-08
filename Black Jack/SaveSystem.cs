@@ -37,7 +37,7 @@ namespace Black_Jack
 
             SaveUser user = new SaveUser();
             user.Username = username;
-            user.Password = Base64Encode(Base64Encode(password));
+            user.Password = GetHashCode(username, password);
             user.Money = 300;
 
             string jsonData = JsonSerializer.Serialize(user);
@@ -56,13 +56,13 @@ namespace Black_Jack
 
             foreach (var existingUser in users)
             {
-                if (existingUser.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(existingUser.Password)) == password)
+                if (existingUser.Username.ToLower() == username.ToLower() && existingUser.Password == GetHashCode(username, password))
                 {
                     users.Remove(existingUser);
                     usersCol.DeleteOne(filter);
                     return true;
                 }
-                else if (existingUser.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(existingUser.Password)) != password)
+                else if (existingUser.Username.ToLower() == username.ToLower() && existingUser.Password != GetHashCode(username, password))
                 {
                     Menu.DeleteAccountText();
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -85,12 +85,12 @@ namespace Black_Jack
 
             foreach (var user in users)
             {
-                if (user.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(user.Password)) == password)
+                if (user.Username.ToLower() == username.ToLower() && user.Password == GetHashCode(username, password))
                 {
                     loggedInUser = user;
                     return true;
                 }
-                else if (user.Username.ToLower() == username.ToLower() && Base64Decode(Base64Decode(user.Password)) != password)
+                else if (user.Username.ToLower() == username.ToLower() && user.Password != GetHashCode(username, password))
                 {
                     Menu.LoginText();
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -140,16 +140,9 @@ namespace Black_Jack
             }
         }
 
-        public static string Base64Encode(string plainText)
+        private static string GetHashCode(string username, string password)
         {
-            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
-            return System.Convert.ToBase64String(plainTextBytes);
-        }
-
-        public static string Base64Decode(string base64EncodedData)
-        {
-            var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
-            return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+            return $"{username}#%/{password}".GetDeterministicHashCode().ToString();
         }
     }
 }
