@@ -37,7 +37,7 @@ namespace Black_Jack
 
             SaveUser user = new SaveUser();
             user.Username = username;
-            user.Password = GetHashCode(username, password);
+            user.Password = GetHashCode(username.ToLower(), password);
             user.Money = 300;
 
             string jsonData = JsonSerializer.Serialize(user);
@@ -56,13 +56,13 @@ namespace Black_Jack
 
             foreach (var existingUser in users)
             {
-                if (existingUser.Username.ToLower() == username.ToLower() && existingUser.Password == GetHashCode(username, password))
+                if (existingUser.Username.ToLower() == username.ToLower() && existingUser.Password == GetHashCode(username.ToLower(), password))
                 {
                     users.Remove(existingUser);
                     usersCol.DeleteOne(filter);
                     return true;
                 }
-                else if (existingUser.Username.ToLower() == username.ToLower() && existingUser.Password != GetHashCode(username, password))
+                else if (existingUser.Username.ToLower() == username.ToLower() && existingUser.Password != GetHashCode(username.ToLower(), password))
                 {
                     Menu.DeleteAccountText();
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -85,12 +85,12 @@ namespace Black_Jack
 
             foreach (var user in users)
             {
-                if (user.Username.ToLower() == username.ToLower() && user.Password == GetHashCode(username, password))
+                if (user.Username.ToLower() == username.ToLower() && user.Password == GetHashCode(username.ToLower(), password))
                 {
                     loggedInUser = user;
                     return true;
                 }
-                else if (user.Username.ToLower() == username.ToLower() && user.Password != GetHashCode(username, password))
+                else if (user.Username.ToLower() == username.ToLower() && user.Password != GetHashCode(username.ToLower(), password))
                 {
                     Menu.LoginText();
                     Console.ForegroundColor = ConsoleColor.Red;
