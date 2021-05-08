@@ -35,7 +35,6 @@ namespace Black_Jack
                 switch (menuPos)
                 {
                     case 0:
-                        Console.Clear();
                         BlackjackText();
                         Console.BackgroundColor = ConsoleColor.White;
                         Console.ForegroundColor = ConsoleColor.Black;
@@ -54,7 +53,6 @@ namespace Black_Jack
                         ConsoleText.CenterText("                   ");
                         break;
                     case 1:
-                        Console.Clear();
                         BlackjackText();
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                         Console.ForegroundColor = ConsoleColor.Black;
@@ -75,7 +73,6 @@ namespace Black_Jack
                         ConsoleText.CenterText("                   ");
                         break;
                     case 2:
-                        Console.Clear();
                         BlackjackText();
                         Console.BackgroundColor = ConsoleColor.DarkGray;
                         Console.ForegroundColor = ConsoleColor.Black;
