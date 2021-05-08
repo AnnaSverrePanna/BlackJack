@@ -106,32 +106,48 @@ namespace Black_Jack
                                 selectedOption = true;
                                 break;
                             case 1:
+                                #region CreateAccount
+                                CreateAccountText();
+                                
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                ConsoleText.CenterText("                   ");
+                                ConsoleText.CenterText("     Username:     ");
+                                ConsoleText.CenterText("                   ");
                                 Console.BackgroundColor = ConsoleColor.Black;
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.Clear();
-                                Console.WriteLine(@"   ___ ___ ___   _ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
-                                Console.WriteLine(@"  / __| _ \ __| /_\_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
-                                Console.WriteLine(@" | (__|   / _| / _ \| | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
-                                Console.WriteLine(@"  \___|_|_\___/_/ \_\_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
-                                Console.WriteLine();
                                 Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.Write("Username: ");
+                                Console.SetCursorPosition((Console.WindowWidth - 9) / 2, Console.CursorTop);
                                 Console.ForegroundColor = ConsoleColor.White;
                                 string createAccountUsername = Console.ReadLine();
-                                Console.ForegroundColor = ConsoleColor.DarkRed;
-                                Console.Write("Password: ");
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                ConsoleText.CenterText("                   ");
+                                ConsoleText.CenterText("     Password:     ");
+                                ConsoleText.CenterText("                   ");
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.SetCursorPosition((Console.WindowWidth - 9) / 2, Console.CursorTop);
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 string createAccountPasswordFirst = Console.ReadLine();
-                                Console.ForegroundColor = ConsoleColor.DarkRed;
-                                Console.Write("Confirm Password: ");
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                ConsoleText.CenterText("                   ");
+                                ConsoleText.CenterText(" Confirm Password: ");
+                                ConsoleText.CenterText("                   ");
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.SetCursorPosition((Console.WindowWidth - 9) / 2, Console.CursorTop);
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 string createAccountPassword = Console.ReadLine();
                                 Console.ResetColor();
 
                                 if (createAccountPasswordFirst != createAccountPassword)
                                 {
+                                    CreateAccountText();
                                     Console.ForegroundColor = ConsoleColor.Red;
-                                    Console.WriteLine("Passwords doesn't match. Try again!");
+                                    ConsoleText.CenterText("Passwords doesn't match. Try again!");
                                     Console.ResetColor();
                                     Console.ReadLine();
                                     break;
@@ -140,36 +156,45 @@ namespace Black_Jack
                                 switch (SaveSystem.CreateUser(createAccountUsername, createAccountPassword))
                                 {
                                     case true:
-                                        Console.Clear();
+                                        CreateAccountText();
                                         Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.WriteLine("Account created!");
+                                        ConsoleText.CenterText("Account created!");
                                         Console.ResetColor();
                                         Thread.Sleep(750);
                                         break;
                                     case false:
-                                        Console.Clear();
+                                        CreateAccountText();
                                         Console.ForegroundColor = ConsoleColor.Red;
-                                        Console.WriteLine("Username is already taken!");
+                                        ConsoleText.CenterText("Username is already taken!");
                                         Console.ResetColor();
                                         Thread.Sleep(750);
                                         break;
                                 }
+                                #endregion
                                 break;
                             case 2:
+                                #region DeleteAccount
+                                DeleteAccountText();
+
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                ConsoleText.CenterText("                   ");
+                                ConsoleText.CenterText("     Username:     ");
+                                ConsoleText.CenterText("                   ");
                                 Console.BackgroundColor = ConsoleColor.Black;
-                                Console.ForegroundColor = ConsoleColor.White;
-                                Console.Clear();
-                                Console.WriteLine(@"  ___  ___ _    ___ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
-                                Console.WriteLine(@" |   \| __| |  | __|_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
-                                Console.WriteLine(@" | |) | _|| |__| _|  | | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
-                                Console.WriteLine(@" |___/|___|____|___| |_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
-                                Console.WriteLine();
                                 Console.ForegroundColor = ConsoleColor.Cyan;
-                                Console.Write("Username: ");
+                                Console.SetCursorPosition((Console.WindowWidth - 9) / 2, Console.CursorTop);
                                 Console.ForegroundColor = ConsoleColor.White;
                                 string deleteAccountUsername = Console.ReadLine();
-                                Console.ForegroundColor = ConsoleColor.DarkRed;
-                                Console.Write("Password: ");
+                                Console.BackgroundColor = ConsoleColor.White;
+                                Console.ForegroundColor = ConsoleColor.Black;
+                                Console.WriteLine();
+                                Console.WriteLine();
+                                ConsoleText.CenterText("                   ");
+                                ConsoleText.CenterText("     Password:     ");
+                                ConsoleText.CenterText("                   ");
+                                Console.BackgroundColor = ConsoleColor.Black;
+                                Console.SetCursorPosition((Console.WindowWidth - 9) / 2, Console.CursorTop);
                                 Console.ForegroundColor = ConsoleColor.Black;
                                 string deleteAccountPassword = Console.ReadLine();
                                 Console.ResetColor();
@@ -177,9 +202,9 @@ namespace Black_Jack
                                 switch (SaveSystem.DeleteUser(deleteAccountUsername, deleteAccountPassword))
                                 {
                                     case true:
-                                        Console.Clear();
+                                        DeleteAccountText();
                                         Console.ForegroundColor = ConsoleColor.Green;
-                                        Console.WriteLine("Account deleted successfully!");
+                                        ConsoleText.CenterText("Account deleted successfully!");
                                         Console.ResetColor();
                                         Thread.Sleep(750);
                                         break;
@@ -187,6 +212,7 @@ namespace Black_Jack
                                         Thread.Sleep(750);
                                         break;
                                 }
+                                #endregion
                                 break;
                         }
                         break;
@@ -220,6 +246,51 @@ namespace Black_Jack
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        public static void LoginText()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            ConsoleText.CenterText(@"  _    ___   ___ ___ _  _ ");
+            ConsoleText.CenterText(@" | |  / _ \ / __|_ _| \| |");
+            ConsoleText.CenterText(@" | |_| (_) | (_ || || .` |");
+            ConsoleText.CenterText(@" |____\___/ \___|___|_|\_|");
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        public static void CreateAccountText()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            ConsoleText.CenterText(@"   ___ ___ ___   _ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
+            ConsoleText.CenterText(@"  / __| _ \ __| /_\_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
+            ConsoleText.CenterText(@" | (__|   / _| / _ \| | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
+            ConsoleText.CenterText(@"  \___|_|_\___/_/ \_\_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        public static void DeleteAccountText()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            ConsoleText.CenterText(@"  ___  ___ _    ___ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
+            ConsoleText.CenterText(@" |   \| __| |  | __|_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
+            ConsoleText.CenterText(@" | |) | _|| |__| _|  | | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
+            ConsoleText.CenterText(@" |___/|___|____|___| |_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
             Console.WriteLine();
             Console.WriteLine();
         }

@@ -83,20 +83,28 @@ namespace Black_Jack
                 //string[] intro = { "Welcome to Blackjack!", "Do you want to:", " 1. Login", " 2. Create Account", " 3. Delete Account" };
 
                 //Testing_stuff.PrintTextNice(intro);
+
+                Menu.LoginText();
+
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                ConsoleText.CenterText("                   ");
+                ConsoleText.CenterText("     Username:     ");
+                ConsoleText.CenterText("                   ");
                 Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Clear();
-                Console.WriteLine(@"  _    ___   ___ ___ _  _ ");
-                Console.WriteLine(@" | |  / _ \ / __|_ _| \| |");
-                Console.WriteLine(@" | |_| (_) | (_ || || .` |");
-                Console.WriteLine(@" |____\___/ \___|___|_|\_|");
-                Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.Write("Username: ");
+                Console.SetCursorPosition((Console.WindowWidth - 9) / 2, Console.CursorTop);
                 Console.ForegroundColor = ConsoleColor.White;
                 string loginUsername = Console.ReadLine();
-                Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.Write("Password: ");
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine();
+                Console.WriteLine();
+                ConsoleText.CenterText("                   ");
+                ConsoleText.CenterText("     Password:     ");
+                ConsoleText.CenterText("                   ");
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.SetCursorPosition((Console.WindowWidth - 9) / 2, Console.CursorTop);
                 Console.ForegroundColor = ConsoleColor.Black;
                 string loginPassword = Console.ReadLine();
                 Console.ResetColor();
@@ -105,13 +113,12 @@ namespace Black_Jack
                 switch (SaveSystem.Login(loginUsername, loginPassword))
                 {
                     case true:
-                        Console.Clear();
-
                         _player.Name = SaveSystem.loggedInUser.Username;
                         _player.MoneyPot = SaveSystem.loggedInUser.Money;
                         _player.Points = SaveSystem.loggedInUser.PlayerPoints;
                         _dealer.Points = SaveSystem.loggedInUser.DealerPoints;
 
+                        Menu.LoginText();
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine("Logged in successfully!");
                         Console.ResetColor();

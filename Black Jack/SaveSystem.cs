@@ -41,7 +41,7 @@ namespace Black_Jack
             user.Money = 300;
 
             string jsonData = JsonSerializer.Serialize(user);
-            usersCol.InsertOne(BsonDocument.Parse(jsonData)); //database
+            usersCol.InsertOne(BsonDocument.Parse(jsonData));
             return true;
         }
 
@@ -64,17 +64,17 @@ namespace Black_Jack
                 }
                 else if (existingUser.Username == username && Base64Decode(Base64Decode(existingUser.Password)) != password)
                 {
-                    Console.Clear();
+                    Menu.DeleteAccountText();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Wrong password!");
+                    ConsoleText.CenterText("Wrong password!");
                     Console.ResetColor();
                     return false;
                 }
             }
 
-            Console.Clear();
+            Menu.DeleteAccountText();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Account not found!");
+            ConsoleText.CenterText("Account not found!");
             Console.ResetColor();
             return false;
         }
@@ -92,17 +92,17 @@ namespace Black_Jack
                 }
                 else if (user.Username == username && Base64Decode(Base64Decode(user.Password)) != password)
                 {
-                    Console.Clear();
+                    Menu.LoginText();
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Wrong password!");
+                    ConsoleText.CenterText("Wrong password!");
                     Console.ResetColor();
                     return false;
                 }
             }
 
-            Console.Clear();
+            Menu.LoginText();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Account not found!");
+            ConsoleText.CenterText("Account not found!");
             Console.ResetColor();
             return false;
         }
