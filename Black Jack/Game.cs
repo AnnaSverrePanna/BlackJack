@@ -52,12 +52,23 @@ namespace Black_Jack
             {
                 TheGame();
 
-                if (PlayAgain() == false)
+                if (_player.MoneyPot > 0)
                 {
-                    keepPlaying = false;
+                    if (PlayAgain() == false)
+                    {
+                        keepPlaying = false;
+                    }
+                    Reset();
                 }
-
-                Reset();
+                else
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("You have no money left so you cant keep playing");
+                    Console.WriteLine($"You won {_player.Points} times and you lost {_dealer.Points} times");
+                    Console.WriteLine("Press any key to exit");
+                    _status = GameStatus.End;
+                    Console.ReadKey();
+                }
             }
         }
 
@@ -529,7 +540,7 @@ namespace Black_Jack
                         Console.ForegroundColor = ConsoleColor.White;
                         Console.WriteLine($"How much do you want to bet of your ${_player.MoneyPot}");
                     }
-                }        
+                }
 
                 if (_player.Bet <= _player.MoneyPot && _player.Bet > 0)
                 {
