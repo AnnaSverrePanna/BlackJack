@@ -286,10 +286,12 @@ namespace Black_Jack
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine();
-            ConsoleText.CenterText(@"  _    ___   ___ ___ _  _ ");
-            ConsoleText.CenterText(@" | |  / _ \ / __|_ _| \| |");
-            ConsoleText.CenterText(@" | |_| (_) | (_ || || .` |");
-            ConsoleText.CenterText(@" |____\___/ \___|___|_|\_|");
+            ConsoleText.CenterText(@"  _      ____   _____ _____ _   _ ");
+            ConsoleText.CenterText(@" | |    / __ \ / ____|_   _| \ | |");
+            ConsoleText.CenterText(@" | |   | |  | | |  __  | | |  \| |");
+            ConsoleText.CenterText(@" | |   | |  | | | |_ | | | | . ` |");
+            ConsoleText.CenterText(@" | |___| |__| | |__| |_| |_| |\  |");
+            ConsoleText.CenterText(@" |______\____/ \_____|_____|_| \_|");
             Console.WriteLine();
             Console.WriteLine();
         }
@@ -301,10 +303,12 @@ namespace Black_Jack
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine();
-            ConsoleText.CenterText(@"   ___ ___ ___   _ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
-            ConsoleText.CenterText(@"  / __| _ \ __| /_\_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
-            ConsoleText.CenterText(@" | (__|   / _| / _ \| | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
-            ConsoleText.CenterText(@"  \___|_|_\___/_/ \_\_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
+            ConsoleText.CenterText(@"   _____ _____  ______       _______ ______            _____ _____ ____  _    _ _   _ _______ ");
+            ConsoleText.CenterText(@"  / ____|  __ \|  ____|   /\|__   __|  ____|     /\   / ____/ ____/ __ \| |  | | \ | |__   __|");
+            ConsoleText.CenterText(@" | |    | |__) | |__     /  \  | |  | |__       /  \ | |   | |   | |  | | |  | |  \| |  | |   ");
+            ConsoleText.CenterText(@" | |    |  _  /|  __|   / /\ \ | |  |  __|     / /\ \| |   | |   | |  | | |  | | . ` |  | |   ");
+            ConsoleText.CenterText(@" | |____| | \ \| |____ / ____ \| |  | |____   / ____ \ |___| |___| |__| | |__| | |\  |  | |   ");
+            ConsoleText.CenterText(@"  \_____|_|  \_\______/_/    \_\_|  |______| /_/    \_\_____\_____\____/ \____/|_| \_|  |_|   ");
             Console.WriteLine();
             Console.WriteLine();
         }
@@ -316,10 +320,12 @@ namespace Black_Jack
             Console.Clear();
             Console.WriteLine();
             Console.WriteLine();
-            ConsoleText.CenterText(@"  ___  ___ _    ___ _____ ___     _   ___ ___ ___  _   _ _  _ _____ ");
-            ConsoleText.CenterText(@" |   \| __| |  | __|_   _| __|   /_\ / __/ __/ _ \| | | | \| |_   _|");
-            ConsoleText.CenterText(@" | |) | _|| |__| _|  | | | _|   / _ \ (_| (_| (_) | |_| | .` | | |  ");
-            ConsoleText.CenterText(@" |___/|___|____|___| |_| |___| /_/ \_\___\___\___/ \___/|_|\_| |_|  ");
+            ConsoleText.CenterText(@"  _____  ______ _      ______ _______ ______            _____ _____ ____  _    _ _   _ _______ ");
+            ConsoleText.CenterText(@" |  __ \|  ____| |    |  ____|__   __|  ____|     /\   / ____/ ____/ __ \| |  | | \ | |__   __|");
+            ConsoleText.CenterText(@" | |  | | |__  | |    | |__     | |  | |__       /  \ | |   | |   | |  | | |  | |  \| |  | |   ");
+            ConsoleText.CenterText(@" | |  | |  __| | |    |  __|    | |  |  __|     / /\ \| |   | |   | |  | | |  | | . ` |  | |   ");
+            ConsoleText.CenterText(@" | |__| | |____| |____| |____   | |  | |____   / ____ \ |___| |___| |__| | |__| | |\  |  | |   ");
+            ConsoleText.CenterText(@" |_____/|______|______|______|  |_|  |______| /_/    \_\_____\_____\____/ \____/|_| \_|  |_|   ");
             Console.WriteLine();
             Console.WriteLine();
         }
